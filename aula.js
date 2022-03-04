@@ -13,5 +13,5 @@ var d = "abcd"
 //declaração de variaveis (const, let e var)
 //Tipagem dinamica no js
 //Valores lógicos dos tipos no js
-//Comparação com coersão implicita
+//Comparação com coersão implicita (== e ===)
 //
