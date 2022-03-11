@@ -78,6 +78,7 @@ const soma = valores.reduce((ac, v) => ac + v)
 //const resultadoDaG = g();
 
 //implementar funcao filter
+/*
 function filter(v, f){
     let vFinal = new Array();
     for(let i = 0 ; i < v.length ; i++){
@@ -100,8 +101,10 @@ function map (v, f){
 }
 
 console.log(map(["abc", "def"], (e) => e.length))
+/*
 
 //JSON
+/*
 let pessoa = {
     nome: "João",
     idade: 17
@@ -121,3 +124,89 @@ let p = {
 
 console.log(p.endereco.logradouro)
 console.log(p.endereco['numero'])
+*/
+
+//IO-BOUND
+//CPU-BOUND
+//callback hell
+/*
+const fs = require('fs') 
+const abrirArquivo = function(nomeArquivo){
+    const exibirConteudo = function(erro, conteudo){
+        if(erro){
+            console.log('Erro: ' + erro)
+        } else {
+            console.log('OK: ' + conteudo.toString())
+            const dobro = +conteudo.toString() * 2 //+ converte para number
+            console.log('Valor calculado: ' + dobro)
+
+            const finalizar = function(erro){
+                if(erro)
+                    console.log('Erro: ' + erro)
+                else    
+                    console.log('Ok! Arquivo criado')
+            }
+
+            fs.writeFile('dobro.txt', dobro.toString(), finalizar)
+        }
+    }
+    //segundo parametro: função callback
+    fs.readFile(nomeArquivo, exibirConteudo)
+    
+}
+
+abrirArquivo('arquivo.txt')
+*/
+
+/*
+function devolveUm(){
+    return 1
+}
+ const resultado = devolveUm();
+ console.log(resultado)
+*/
+/*
+ function devolveUm(){
+     let p = new Promise(function(resolve, reject){
+        resolve(1)
+     })
+     return p
+
+ }
+
+const resultado = devolveUm()
+resultado.then((res) => console.log(res))
+*/
+
+//1 + 2 + ... + n
+/*
+const calculoDemorado = (n) => {
+    let p = new Promise((resolve, reject) => {
+        if(n < 0)
+            reject('Não use numero negativo')
+        let res = 0
+        for(let i = 0 ; i <= n ; i++)
+            res += i
+
+        resolve(res)
+    })
+    return p
+}
+
+calculoDemorado(-5)
+.then((res) => {console.log(res)})
+.catch((erro) => {console.log('Erro: ' + erro)})
+*/
+/*
+const calculoRapidinho = (n) => {
+    return Promise.resolve((n * (n + 1)) / 2)
+}
+calculoRapidinho(10).then((res) => console.log(res))
+*/
+
+//a mesma coisa que a calculoRapidinho faz
+//sem usar a "Promise.resolve"
+const f = (n) => {
+    return new Promise((resolve, reject) => resolve((n * (n + 1)) / 2))
+}
+f(10).then((res) => console.log(res))
